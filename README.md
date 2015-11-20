@@ -1,7 +1,7 @@
 locatehost
 ==========
 
-Obtain geo information about hosts using ip-api.com.
+Obtain geo information about hosts using [ip-api.com](http://ip-api.com).
 
 Usage
 -----
