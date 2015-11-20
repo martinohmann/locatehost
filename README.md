@@ -1,5 +1,6 @@
 locatehost
 ==========
+
 Get location information about hosts.
 
 Usage
@@ -9,7 +10,7 @@ Usage
 
   Retrieve geo information for hosts. If no host is specified, geo information
   for the current public ip address is obtained.
-
+  
   positional arguments:
     host          FQDN, IPv4 or IPv6 address
 
