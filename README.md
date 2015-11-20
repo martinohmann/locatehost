@@ -5,7 +5,7 @@ Get location information about hosts.
 
 Usage
 -----
-
+```
   usage: locatehost [-h] [-c] [-r] [host [host ...]]
 
   Retrieve geo information for hosts. If no host is specified, geo information
@@ -19,4 +19,4 @@ Usage
     -c, --coords  only print coords for each host
     -r, --raw     print raw output, suppressing all messages. errors are still
                   logged to stderr
-
+```
