@@ -20,3 +20,7 @@ optional arguments:
   -r, --raw     print raw output, suppressing all messages. errors are still
                 logged to stderr
 ```
+
+Screenshot
+----------
+![Screenshot](https://raw.githubusercontent.com/martinohmann/locatehost/master/screenshot.png)
