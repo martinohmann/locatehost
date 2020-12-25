@@ -46,7 +46,7 @@ class MessageLogger(object):
         self.quiet = quiet
         self.errors = 0
 
-    def log(self, msg, log_type='success', color=Colors.GREEN, file=sys.stdout):
+    def log(self, msg, log_type='success', color=Colors.GREEN, file=sys.stderr):
         if not self.quiet or log_type == 'error':
             print('[%s] %s' % (Colors.enclose(log_type, color), msg), file=file)
 
@@ -66,8 +66,9 @@ class GeoIPInfo(MessageLogger):
     def __init__(self, args):
         self.hosts = args.hosts
         self.raw_output = args.raw_output
+        self.json_output = args.json_output
         self.coords_only = args.coords_only
-        super(GeoIPInfo, self).__init__(self.raw_output)
+        super(GeoIPInfo, self).__init__(self.raw_output or self.json_output)
 
     def _print_pair(self, key, val):
         if self.raw_output:
@@ -114,7 +115,11 @@ class GeoIPInfo(MessageLogger):
 
                 self.success('retrieved %s bytes in %f sec' % 
                     (len(raw), elapsed))
-                
+
+                if self.json_output:
+                    print(json.dumps(data, indent=2, sort_keys=True))
+                    return
+
                 if self.raw_output:
                     print('host: %s' % host)
 
@@ -150,7 +155,9 @@ if __name__ == "__main__":
     parser.add_argument('-c', '--coords', dest='coords_only', action='store_true',
         help='only print coords for each host')
     parser.add_argument('-r', '--raw', dest='raw_output', action='store_true',
-        help='print raw output, suppressing all messages. errors are still logged to stderr')
+        help='print raw output to stdout')
+    parser.add_argument('-j', '--json', dest='json_output', action='store_true',
+        help='print json output to stdout')
     args = parser.parse_args()
 
     try:
